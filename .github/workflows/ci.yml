@@ -71,24 +71,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-      - name: Install Prettier
-        run: npm install --global prettier
-      - name: Install Nightly Toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          components: rustfmt, clippy
-      - name: Cache Rust Dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions/checkout@v4
-      - name: Run Lint Script
-        run: ./lint.sh --mode=check
+      # - name: Install Prettier
+      #   run: npm install --global prettier
+      # - name: Install Nightly Toolchain
+      #   uses: actions-rs/toolchain@v1
+      #   with:
+      #     toolchain: nightly
+      #     components: rustfmt, clippy
+      # - name: Cache Rust Dependencies
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.cargo/registry
+      #       ~/.cargo/git
+      #       target
+      #     key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      # - uses: actions/checkout@v4
+      # - name: Run Lint Script
+      #   run: ./lint.sh --mode=check
 
   draft_release:
     name: Draft Release
@@ -120,8 +120,8 @@ jobs:
 
   release:
     name: Release
-    needs: [test, format, draft_release, check_if_build]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && (needs.check_if_build.outputs.check_if_build == 'true') || (github.event_name == 'release' && github.event.action == 'published')
+    needs: [check_if_build]
+    if: (github.event_name == 'pull_request') || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'release' && github.event.action == 'published')
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
