@@ -20,3 +20,10 @@ jobs:
           command: "github-release"
           skip-github-pull-request: true
           skip-github-release: true
+
+      - name: Push Tag
+        if: steps.release-please.outputs.tag_created
+        run: |
+          git push origin "refs/tags/${{ steps.release-please.outputs.tag }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
