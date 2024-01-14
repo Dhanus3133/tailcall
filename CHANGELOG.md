@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.21.1](https://github.com/Dhanus3133/tailcall/compare/v0.21.0...v0.21.1) (2024-01-14)
+
+
+### Bug Fixes
+
+* delete the file ([9d626c2](https://github.com/Dhanus3133/tailcall/commit/9d626c2f86de9aa57722fb8aaa213ca6468dc55f))
+* remove unused file ([3cef297](https://github.com/Dhanus3133/tailcall/commit/3cef297f08c5a01aa7810e88370700656e752f8e))
+
 ## [0.21.0](https://github.com/Dhanus3133/tailcall/compare/v0.20.0...v0.21.0) (2024-01-14)
 
 
