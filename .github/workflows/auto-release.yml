@@ -12,6 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "latest"
+
+      - name: Create package.json
+        run: |
+          npm init -y
+
       - name: Release
         uses: cycjimmy/semantic-release-action@v4
         with:
