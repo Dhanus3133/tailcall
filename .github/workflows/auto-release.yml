@@ -16,7 +16,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: rust
+          release-type: simple
           skip-github-pull-request: true
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
