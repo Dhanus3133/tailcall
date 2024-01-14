@@ -5,26 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: google-github-actions/release-please-action@v4
         with:
-          node-version: "latest"
-
-      - name: Create package.json
-        run: |
-          npm init -y
-
-      - name: Release
-        uses: cycjimmy/semantic-release-action@v4
-        with:
-          semantic_version: 23
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: rust
