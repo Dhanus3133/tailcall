@@ -17,3 +17,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: rust
+          skip-github-pull-request: true
